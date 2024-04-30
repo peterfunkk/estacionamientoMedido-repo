@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "EstacionamientoMedido/1.0.0": {
+        "runtime": {
+          "EstacionamientoMedido.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "EstacionamientoMedido/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
