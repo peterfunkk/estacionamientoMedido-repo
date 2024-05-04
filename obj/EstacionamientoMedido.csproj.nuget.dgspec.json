@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gnahu\\Documents\\curso\\Desarrollo-software-2-Marzo-2024\\EstacionamientoMedido\\EstacionamientoMedido.csproj": {}
+    "C:\\Users\\Usuario\\Source\\Repos\\estacionamientoMedido-repo\\EstacionamientoMedido.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gnahu\\Documents\\curso\\Desarrollo-software-2-Marzo-2024\\EstacionamientoMedido\\EstacionamientoMedido.csproj": {
+    "C:\\Users\\Usuario\\Source\\Repos\\estacionamientoMedido-repo\\EstacionamientoMedido.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gnahu\\Documents\\curso\\Desarrollo-software-2-Marzo-2024\\EstacionamientoMedido\\EstacionamientoMedido.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Source\\Repos\\estacionamientoMedido-repo\\EstacionamientoMedido.csproj",
         "projectName": "EstacionamientoMedido",
-        "projectPath": "C:\\Users\\gnahu\\Documents\\curso\\Desarrollo-software-2-Marzo-2024\\EstacionamientoMedido\\EstacionamientoMedido.csproj",
-        "packagesPath": "C:\\Users\\gnahu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gnahu\\Documents\\curso\\Desarrollo-software-2-Marzo-2024\\EstacionamientoMedido\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\estacionamientoMedido-repo\\EstacionamientoMedido.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\Source\\Repos\\estacionamientoMedido-repo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\gnahu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -58,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

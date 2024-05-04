@@ -66,5 +66,23 @@ namespace EstacionamientoMedido.Controladores
             }
 
         }
+
+        public GestorRespuesta<List<Cliente>> ObtenenerClientesPorApellido(string filtro)
+        {
+            List<Cliente> busqueda = repo.Clientes
+                .Where(x => x.Apellido.Contains(filtro) || x.Nombre.Contains(filtro) )
+                .ToList();
+
+            if(busqueda == null)
+            {
+                return new GestorRespuesta<List<Cliente>>()
+                { HayError = true, MensajeError = "No se encuentra el cliente" };
+            } 
+            else
+            {
+                return new GestorRespuesta<List<Cliente>>()
+                { Respuesta = busqueda };
+            }
+        }
     }
 }
