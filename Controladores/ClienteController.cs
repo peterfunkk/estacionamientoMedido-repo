@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EstacionamientoMedido.Modelos;
+using EstacionamientoMedido.Helpers;
 
 namespace EstacionamientoMedido.Controladores
 {
@@ -20,6 +21,50 @@ namespace EstacionamientoMedido.Controladores
         public List<Cliente> ObtenerClientes()
         {
             return repo.Clientes;
+        }
+
+        public Cliente Modificar(Cliente c)
+        {
+            Cliente clienteAEliminar = repo.Clientes.Find(x => x.DNI == c.DNI);
+
+            repo.Clientes.Remove(clienteAEliminar);
+
+            repo.Clientes.Add(c);
+
+            return c;
+        }
+        public Cliente Eliminar(Cliente c)
+        {
+            Cliente clienteAEliminar = repo.Clientes.Find(x => x.DNI == c.DNI);
+
+            repo.Clientes.Remove(clienteAEliminar);
+
+        }
+        public void AsignarVehiculo() { }
+        public GestorRespuesta<Cliente> ObtenerUnCliente(string dni)
+        {
+            Cliente clienteBuscado = repo.Clientes.Find(x => x.DNI == dni);
+
+            if (clienteBuscado == null)
+            {
+                return new GestorRespuesta<Cliente>()
+                {
+                    HayError = true,
+                    MensajeError = "No se encuentra cliente con ese DNI",
+                };
+
+            }
+
+            else
+            {
+                return new GestorRespuesta<Cliente>()
+                {
+                    HayError = false,
+                    Respuesta = clienteBuscado,
+
+                };
+            }
+
         }
     }
 }

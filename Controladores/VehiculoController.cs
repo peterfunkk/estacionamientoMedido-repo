@@ -11,7 +11,7 @@ namespace EstacionamientoMedido.Controladores {
             repo.Vehiculos.Add(v);
         }
 
-        public List<Vehiculo> ObtenerVehiculos(v)
+        public List<Vehiculo> ObtenerVehiculos()
         {
             return repo.Vehiculos;
         }
