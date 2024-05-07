@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EstacionamientoMedido.Vistas;
 
 namespace EstacionamientoMedido.Vistas
 {
     public class Menu
     {
-        void mostrarMenu()
+        ClienteVista vistaCliente = new ClienteVista();
+        public void mostrarMenu()
         {
             int eleccion;
             Console.WriteLine("1- Cargar un cliente");
@@ -23,13 +25,7 @@ namespace EstacionamientoMedido.Vistas
             {
                 case 1: // cargar un nuevo cliente al sistema
 
-                    Cliente clienteTemporal = CargarDatosCliente();
-
-                    // validaciones
-
-                    controladorClientes.GuardarCliente(clienteTemporal); // Agregamos el nuevo cliente a la lista de clientes
-
-                    // Clientes.Add( CargarDatosCliente() );  // Opcion de una sola linea
+                    vistaCliente.CargarDatosCliente();
 
                     Console.WriteLine(); // Espacio en blanco antes de mostrar el menu
                     mostrarMenu(); // Una vez cargado, volvemos a mostrar el menú para elegir otra acción
@@ -38,7 +34,7 @@ namespace EstacionamientoMedido.Vistas
                 case 2:
                     // veo clientes registrados
 
-                    MostrarClientesRegistrados(controladorClientes.ObtenerClientes());
+                    vistaCliente.MostrarClientesRegistrados();
 
                     Console.WriteLine();
                     mostrarMenu();

@@ -11,7 +11,7 @@ namespace EstacionamientoMedido.Vistas
     public class ClienteVista
     {
         ClienteController controladorClientes = new ClienteController();
-        Cliente CargarDatosCliente()
+        public void CargarDatosCliente()
         {
             Cliente clienteNuevo = new Cliente(); // Instanciamos el cliente para cargar los datos
 
@@ -26,10 +26,11 @@ namespace EstacionamientoMedido.Vistas
 
             controladorClientes.GuardarCliente(clienteNuevo);
 
-            return clienteNuevo;
         }
-        void MostrarClientesRegistrados(List<Cliente> listadoClientes)
+        public void MostrarClientesRegistrados()
         {
+            List<Cliente> listadoClientes = controladorClientes.ObtenerClientes();
+
             Console.WriteLine("Listado de clientes cargados en el sistema");
 
             foreach (var item in listadoClientes)
