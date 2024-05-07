@@ -33,7 +33,7 @@ namespace EstacionamientoMedido.Controladores
 
             return c;
         }
-        public Cliente Eliminar(Cliente c)
+        public void Eliminar(Cliente c)
         {
             Cliente clienteAEliminar = repo.Clientes.Find(x => x.DNI == c.DNI);
 
@@ -41,33 +41,23 @@ namespace EstacionamientoMedido.Controladores
 
         }
         public void AsignarVehiculo() { }
-        public GestorRespuesta<Cliente> ObtenerUnCliente(string dni)
+        GestorRespuesta<Cliente, string> ObtenerUnCliente(string dni)
         {
             Cliente clienteBuscado = repo.Clientes.Find(x => x.DNI == dni);
 
             if (clienteBuscado == null)
             {
-                return new GestorRespuesta<Cliente>()
-                {
-                    HayError = true,
-                    MensajeError = "No se encuentra cliente con ese DNI",
-                };
-
+                return new GestorRespuesta<Cliente, string>(true, "No se encontro cliente");
             }
 
             else
             {
-                return new GestorRespuesta<Cliente>()
-                {
-                    HayError = false,
-                    Respuesta = clienteBuscado,
-
-                };
+                return new GestorRespuesta<Cliente, string>(false, clienteBuscado);
             }
 
         }
 
-        public GestorRespuesta<List<Cliente>> ObtenenerClientesPorApellido(string filtro)
+        GestorRespuesta<List<Cliente>, string> ObtenerClientesPorApellido(string filtro)
         {
             List<Cliente> busqueda = repo.Clientes
                 .Where(x => x.Apellido.Contains(filtro) || x.Nombre.Contains(filtro) )
@@ -75,13 +65,11 @@ namespace EstacionamientoMedido.Controladores
 
             if(busqueda == null)
             {
-                return new GestorRespuesta<List<Cliente>>()
-                { HayError = true, MensajeError = "No se encuentra el cliente" };
+                return new GestorRespuesta<List<Cliente>, string>(true, "No se encuentra el cliente");
             } 
             else
             {
-                return new GestorRespuesta<List<Cliente>>()
-                { Respuesta = busqueda };
+                return new GestorRespuesta<List<Cliente>, string> (false, busqueda);
             }
         }
     }

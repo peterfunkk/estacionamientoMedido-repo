@@ -6,7 +6,7 @@ namespace EstacionamientoMedido.Controladores {
     {
         Repositorio repo = new Repositorio();
 
-        public void GuardarVehiculos(v)
+        public void GuardarVehiculos(Vehiculo v)
         {
             repo.Vehiculos.Add(v);
         }

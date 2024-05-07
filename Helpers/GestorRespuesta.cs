@@ -6,15 +6,23 @@ using System.Threading.Tasks;
 
 namespace EstacionamientoMedido.Helpers
 {
-    public class GestorRespuesta<T>
+    class GestorRespuesta<Tipo, T2>
     {
-        public T Respuesta;
-        public bool HayError;
-        public string MensajeError;
 
-        public GestorRespuesta()
+        public Tipo Resultado;
+        public T2 Error;
+        public bool HayError;
+        public GestorRespuesta(bool hayError, T2 mensajeError)
         {
-            
-        }    
+            HayError = hayError;
+            Error = mensajeError;
+        }
+
+        public GestorRespuesta(bool hayError, Tipo resultado)
+        {
+            HayError = hayError;
+            Resultado = resultado;
+        }
+
     }
 }
