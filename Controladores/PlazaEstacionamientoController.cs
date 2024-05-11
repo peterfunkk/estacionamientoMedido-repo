@@ -6,7 +6,7 @@ namespace EstacionamientoMedido.Controladores
 {
     public class PlazaEstacionamientoController 
     {
-        Repositorio repo = new Repositorio();
+        Repositorio repo = Repositorio.ObtenerInstancia();
 
         public void GuardarPlaza(PlazaEstacionamiento p)
         {

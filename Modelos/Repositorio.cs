@@ -6,6 +6,16 @@ using System.Threading.Tasks;
 
 namespace EstacionamientoMedido.Modelos
 {
+    //Reglas a aplicar 
+    /*
+     * 1 -> constructor privado
+     * 2-> metodo para obtener instancia
+     * 2.1 -> si no existe la crea, y si existe devuelve la misma
+     * 3-> el metodo tiene que ser estatico
+     */
+
+
+
     public class Repositorio
     {
         public List<Cliente> Clientes = new List<Cliente>();
@@ -13,7 +23,10 @@ namespace EstacionamientoMedido.Modelos
         public List<PlazaEstacionamiento> PlazasEstacionamiento = new List<PlazaEstacionamiento>();
         public List<Estacionamiento> Estacionamientos = new List<Estacionamiento>();
 
-        public Repositorio()
+        private static Repositorio instancia;
+
+
+        private Repositorio()
         {
             Clientes.Add(new Cliente()
             {
@@ -29,6 +42,21 @@ namespace EstacionamientoMedido.Modelos
                 Telefono = "654321",
                 Email = "estesitiene@gmail.com",
             });
+        }
+
+
+        //patron de diseño SINGLETONE
+        public static Repositorio ObtenerInstancia()
+        {
+            if(instancia == null)
+            {
+                instancia = new Repositorio();
+                return instancia;
+            }
+            else
+            {
+                return instancia;
+            }
         }
 
     }
