@@ -40,8 +40,11 @@ namespace EstacionamientoMedido.Controladores
             salida.TotalEstacionamiento = 0;
 
             repo.Estacionamientos .Add(salida);
+        }
 
-
+        public List<Estacionamiento> MostrarVehiculosEstacionados()
+        {
+            return repo.Estacionamientos;
         }
 
     }

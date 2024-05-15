@@ -16,7 +16,7 @@ namespace EstacionamientoMedido.Vistas
 
         public void IniciarEstacionamiento()
         {
-            Console.WriteLine("Ingrese patente para estacionar: ");
+            Console.WriteLine("Ingrese patente para verificar si existe: ");
             string patente = Console.ReadLine();
 
             if (!VehiculoControlador.ExistePatente(patente))
@@ -32,6 +32,16 @@ namespace EstacionamientoMedido.Vistas
             Console.WriteLine("Ingrese patente para estacionar: ");
             string patente = Console.ReadLine();
             controladorEstacionamiento.FinalizarEstacionamiento(patente);
+        }
+
+        public void MostrarVehiculosEstacionados()
+        {
+            List<Estacionamiento> listadoEstacionamientos = controladorEstacionamiento.MostrarVehiculosEstacionados();
+
+            foreach (var item in listadoEstacionamientos)
+            {
+                Console.WriteLine($"> Patente: {item.VehiculoEstacionado.Patente} - Marca: {item.VehiculoEstacionado.Marca} - Color: {item.VehiculoEstacionado.Color} - Modelo: {item.VehiculoEstacionado.Modelo}");
+            }
         }
     }
 }
