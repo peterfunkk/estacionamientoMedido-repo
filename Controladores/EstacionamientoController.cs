@@ -13,34 +13,43 @@ namespace EstacionamientoMedido.Controladores
         VehiculoController VehiculoControlador = new VehiculoController();
 
 
-        public void IniciarEstacionamiento(string patente)
+        public void IniciarEstacionamiento(Vehiculo vehiculo)
         {
-            Vehiculo vehiculo = VehiculoControlador.ObtenerVehiculoPorPatente(patente);
+            Vehiculo vehiculoObtenido = vehiculo; 
 
             Estacionamiento estacionamiento = new Estacionamiento();    
             estacionamiento.Entrada = DateTime.Now;
-            estacionamiento.VehiculoEstacionado = vehiculo;
+            estacionamiento.VehiculoEstacionado = vehiculoObtenido;
             estacionamiento.PrecioHora = 2000;
 
             repo.Estacionamientos.Add(estacionamiento);
         
         }
 
-        public void FinalizarEstacionamiento(string patente)
+        public Estacionamiento FinalizarEstacionamiento(string patente)
         {
             Estacionamiento salida = repo.Estacionamientos
                 .Where(x => x.VehiculoEstacionado.Patente == patente)
-                .OrderBy(x => x.Entrada)
-                .Single();
+                .OrderByDescending(x => x.Entrada)
+                .FirstOrDefault();
 
             repo.Estacionamientos.Remove(salida);
 
             salida.Salida = DateTime.Now;
+
+            TimeSpan lapso = salida.Salida - salida.Entrada;
+
+            int horasTranscurridas = (int)Math.Round(lapso.TotalHours);
+
             //TAREA: calculo precio total
-            salida.TotalEstacionamiento = 0;
+            salida.TotalEstacionamiento = horasTranscurridas * salida.PrecioHora;
 
             repo.Estacionamientos .Add(salida);
+
+            return salida;
         }
+
+
 
         public List<Estacionamiento> MostrarVehiculosEstacionados()
         {

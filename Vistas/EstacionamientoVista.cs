@@ -21,17 +21,24 @@ namespace EstacionamientoMedido.Vistas
 
             if (!VehiculoControlador.ExistePatente(patente))
             {
+                Console.WriteLine("Esta patente no está registrada, vuelva a ingresar");
                 vehiculoVista.CrearVehiculo();
             }
-            controladorEstacionamiento.IniciarEstacionamiento(patente);
+            Console.WriteLine("Patente registrada, Iniciando Estacionamiento...");
+            Console.WriteLine("------------------------------------------------");
+            Vehiculo vehiculoEncontrado = VehiculoControlador.ObtenerVehiculoPorPatente(patente);
+            controladorEstacionamiento.IniciarEstacionamiento(vehiculoEncontrado);
             
         }
         public void FinalizarEstacionamiento()
         {
             Console.WriteLine();
-            Console.WriteLine("Ingrese patente para estacionar: ");
+            Console.WriteLine("Ingrese patente para finalizar estacionamiento: ");
             string patente = Console.ReadLine();
-            controladorEstacionamiento.FinalizarEstacionamiento(patente);
+            Estacionamiento salida = controladorEstacionamiento.FinalizarEstacionamiento(patente);
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine($"Precio Total: ${salida.TotalEstacionamiento}, Patente: {salida.VehiculoEstacionado.Patente}");
+            Console.WriteLine("---------------------------------");
         }
 
         public void MostrarVehiculosEstacionados()

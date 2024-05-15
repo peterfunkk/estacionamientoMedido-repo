@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using EstacionamientoMedido.Modelos;
 using EstacionamientoMedido.Helpers;
+using FluentValidation.Results;
+using EstacionamientoMedido.Validaciones;
 
 namespace EstacionamientoMedido.Controladores
 {
@@ -12,10 +14,23 @@ namespace EstacionamientoMedido.Controladores
     {
 
         Repositorio repo = Repositorio.ObtenerInstancia();
-
+        
         public void GuardarCliente(Cliente c)
         {
-            repo.Clientes.Add(c);
+            ClienteValidator valida = new ClienteValidator();
+            ValidationResult resultadoValidacion = valida.Validate(c);
+            if (resultadoValidacion.IsValid)
+            {
+                repo.Clientes.Add(c);
+            }
+            else
+            {
+                foreach (var item in resultadoValidacion.Errors)
+                {
+                    Console.WriteLine(item.ErrorMessage);
+                }
+            }
+            
         }
 
         public List<Cliente> ObtenerClientes()
