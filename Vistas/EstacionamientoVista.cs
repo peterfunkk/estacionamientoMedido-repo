@@ -24,10 +24,14 @@ namespace EstacionamientoMedido.Vistas
                 Console.WriteLine("Esta patente no está registrada, vuelva a ingresar");
                 vehiculoVista.CrearVehiculo();
             }
+            if (!controladorEstacionamiento.YaEstaEstacionado(patente))
+            {
+                Vehiculo vehiculoEncontrado = VehiculoControlador.ObtenerVehiculoPorPatente(patente);
+                controladorEstacionamiento.IniciarEstacionamiento(vehiculoEncontrado);
+            }
             Console.WriteLine("Patente registrada, Iniciando Estacionamiento...");
             Console.WriteLine("------------------------------------------------");
-            Vehiculo vehiculoEncontrado = VehiculoControlador.ObtenerVehiculoPorPatente(patente);
-            controladorEstacionamiento.IniciarEstacionamiento(vehiculoEncontrado);
+            
             
         }
         public void FinalizarEstacionamiento()
@@ -44,11 +48,28 @@ namespace EstacionamientoMedido.Vistas
         public void MostrarVehiculosEstacionados()
         {
             List<Estacionamiento> listadoEstacionamientos = controladorEstacionamiento.MostrarVehiculosEstacionados();
-
-            foreach (var item in listadoEstacionamientos)
+            if(listadoEstacionamientos.Count == 0) 
             {
-                Console.WriteLine($"> Patente: {item.VehiculoEstacionado.Patente} - Marca: {item.VehiculoEstacionado.Marca} - Color: {item.VehiculoEstacionado.Color} - Modelo: {item.VehiculoEstacionado.Modelo}");
+                Console.WriteLine("No hay estacionamientos");
             }
+            else
+            {
+                foreach (var item in listadoEstacionamientos)
+                {
+                    if (item.Estado == Enumeracion.EstadoEstacionamiento.Activo)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($" >{item.VehiculoEstacionado.Patente} - {item.Entrada} ");
+                    } else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($" >{item.VehiculoEstacionado.Patente} - {item.Entrada} / {item.Salida} ");
+                    }
+
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                }
+            }
+            
         }
     }
 }

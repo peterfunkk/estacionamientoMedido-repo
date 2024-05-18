@@ -15,15 +15,12 @@ namespace EstacionamientoMedido.Controladores
 
         public void IniciarEstacionamiento(Vehiculo vehiculo)
         {
-            Vehiculo vehiculoObtenido = vehiculo; 
+            Vehiculo vehiculoObtenido = vehiculo;
 
-            Estacionamiento estacionamiento = new Estacionamiento();    
-            estacionamiento.Entrada = DateTime.Now;
-            estacionamiento.VehiculoEstacionado = vehiculoObtenido;
-            estacionamiento.PrecioHora = 2000;
+            Estacionamiento estacionamiento = new Estacionamiento(vehiculoObtenido, 2000);
 
             repo.Estacionamientos.Add(estacionamiento);
-        
+
         }
 
         public Estacionamiento FinalizarEstacionamiento(string patente)
@@ -35,14 +32,7 @@ namespace EstacionamientoMedido.Controladores
 
             repo.Estacionamientos.Remove(salida);
 
-            salida.Salida = DateTime.Now;
-
-            TimeSpan lapso = salida.Salida - salida.Entrada;
-
-            int horasTranscurridas = (int)Math.Round(lapso.TotalHours);
-
-            //TAREA: calculo precio total
-            salida.TotalEstacionamiento = horasTranscurridas * salida.PrecioHora;
+            salida.SalidaEstacionamiento();
 
             repo.Estacionamientos .Add(salida);
 
@@ -56,5 +46,15 @@ namespace EstacionamientoMedido.Controladores
             return repo.Estacionamientos;
         }
 
+        public bool YaEstaEstacionado(string patente)
+        {
+            bool resultado;
+
+            resultado = repo.Estacionamientos
+                .Where(x => x.VehiculoEstacionado.Patente == patente)
+                .Where(x => x.Estado == Enumeracion.EstadoEstacionamiento.Activo)
+                .Any();
+            return resultado;
+        }
     }
 }
